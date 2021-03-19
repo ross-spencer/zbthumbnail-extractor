@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import argparse
 import os
 import sys
@@ -75,9 +77,9 @@ def extractJpegs(tnfile):
                   file.append(buf[0])
 
       f.close()
-      sys.stdout.write(str(tncount) + " JPEGs discovered." + "\n")
+      print("{} JPEGs discovered.".format(tncount))
    else:
-      sys.stdout.write("Warning: Filename provided does not point to a file.")
+      print("Warning: Filename provided does not point to a file.", file=sys.stderr)
 
 def main():
 
