@@ -99,10 +99,7 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    # Parse arguments into namespace object to reference later in the script
-    global args
     args = parser.parse_args()
-
     if args.info:
         extractJpegs(args.info)
 
