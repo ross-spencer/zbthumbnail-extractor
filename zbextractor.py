@@ -31,13 +31,12 @@ def extractJpegs(tnfile):
 
     if os.path.isfile(tnfile):
 
-        # if we need a directory name, create it here
+        # If we need a directory name, create it here.
         dirname = tnfile.split(".", 1)[0] + "-" + str(uuid.uuid4())
 
         f = open(tnfile, "rb")
 
         tncount = 0
-        endcount = 0
 
         buf = ""
 
@@ -52,17 +51,17 @@ def extractJpegs(tnfile):
             if fbytes == JPGHead:
 
                 # Create a folder to store jpegs
-                if bFound == False:
+                if bFound is False:
                     if not os.path.exists(dirname):
                         os.makedirs(dirname)
-                        bfound = True
+                        bFound = True
 
                 tncount += 1
                 file = []
                 file = buf
                 buf = ""
                 eofJPG = False
-                while eofJPG == False:
+                while eofJPG is False:
                     buf = buffer_window_read(f, buf)
                     fbytes = b"".join(buf[0:2])
                     if fbytes == JPGTail:
@@ -86,9 +85,9 @@ def extractJpegs(tnfile):
 
 def main():
 
-    #    Usage:  --info [ZbThumbnail.info]
+    # Usage:  --info [ZbThumbnail.info]
 
-    #    Handle command line arguments for the script
+    # Handle command line arguments for the script
     parser = argparse.ArgumentParser(
         description="Extract JPG from ZbThumbnail.info files. NOTE: May also be applicable to Thumbs.db at users own risk."
     )
@@ -100,7 +99,7 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    #    Parse arguments into namespace object to reference later in the script
+    # Parse arguments into namespace object to reference later in the script
     global args
     args = parser.parse_args()
 
