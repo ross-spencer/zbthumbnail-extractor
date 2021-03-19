@@ -66,7 +66,9 @@ def extractJpegs(tnfile):
                   file.append(buf[1])
                   eofJPG=True
                   buf = ''
-                  jpg = open(dirname + '\image-' + str(tncount).zfill(4) + '.jpg', 'wb')
+                  image_name = 'image-{}.jpg'.format(str(tncount).zfill(4))
+                  file_to_open = os.path.join(dirname, image_name)
+                  jpg = open(file_to_open, 'wb')
                   jpg.write(b"".join(file[0:]))
                   jpg.close()
                else:
