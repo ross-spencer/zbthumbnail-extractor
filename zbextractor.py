@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 import os
 import sys
@@ -16,15 +18,15 @@ def buffer_window_read(f, buf):
       buf.append(f.read(1))
       buf.append(f.read(1))
       buf.append(f.read(1))
-   
+
    return buf
 
 def extractJpegs(tnfile):
 
    bFound = False
-   
+
    if os.path.isfile(tnfile):
-   
+
       #if we need a directory name, create it here
       dirname = tnfile.split('.',1)[0] + '-' + str(uuid.uuid4())
 
@@ -44,13 +46,13 @@ def extractJpegs(tnfile):
          buf = buffer_window_read(f, buf)
          fbytes = b"".join(buf[0:2])
          if fbytes == JPGHead:
-         
+
             #Create a folder to store jpegs
-            if bFound == False: 
+            if bFound == False:
                if not os.path.exists(dirname):
                   os.makedirs(dirname)
                   bfound = True
-            
+
             tncount+=1
             file = []
             file = buf
@@ -90,10 +92,10 @@ def main():
    #	Parse arguments into namespace object to reference later in the script
    global args
    args = parser.parse_args()
-   
+
    if args.info:
       extractJpegs(args.info)
-   
+
    else:
       sys.exit(1)
 
